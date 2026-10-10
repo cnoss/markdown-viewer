@@ -38,7 +38,9 @@ Der Stapel-Knopf rechts in der Eingabezeile schaltet um, ob die Suche auch Unter
 
 | Kürzel | Wirkung |
 |---|---|
+| <kbd>⌘↩</kbd> | Zwischen Lesen und Bearbeiten wechseln |
 | <kbd>⌘E</kbd> | Datei im eingestellten Editor öffnen |
+| <kbd>⌘P</kbd> | Als PDF drucken (mdprint) |
 | <kbd>⇧⌘R</kbd> | Datei im Finder zeigen |
 | <kbd>⌘K</kbd> | In die Eingabezeile springen |
 | <kbd>⌘↑</kbd> | Übergeordneter Ordner |
@@ -47,6 +49,15 @@ Der Stapel-Knopf rechts in der Eingabezeile schaltet um, ob die Suche auch Unter
 | <kbd>⌘+</kbd> <kbd>⌘-</kbd> <kbd>⌘0</kbd> | Schrift größer / kleiner / zurücksetzen |
 | <kbd>⌘\\</kbd> | Inhaltsbreite wechseln (Schmal → Mittel → Voll) |
 | <kbd>⌘,</kbd> | Einstellungen |
+
+### Bearbeiten
+
+<kbd>⌘↩</kbd> oder der Stift-Knopf oben rechts zeigt statt der Leseansicht den Markdown-Text. <kbd>Esc</kbd> oder <kbd>⌘↩</kbd> führt zurück.
+
+- Gespeichert wird automatisch: kurz nach dem Tippen, beim Zurückwechseln, beim Öffnen einer anderen Datei und wenn du zu einer anderen App wechselst.
+- Rückgängig, Suchen (<kbd>⌘F</kbd>), Rechtschreibprüfung und Diktat funktionieren wie überall auf dem Mac.
+- Ändert ein anderes Programm die Datei, während du hier bearbeitest, fragt MD Viewer, welche Version gelten soll.
+- Für längeres Schreiben bleibt <kbd>⌘E</kbd>, der externe Editor.
 
 ### Finder
 

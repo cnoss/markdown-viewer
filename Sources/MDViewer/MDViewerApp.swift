@@ -21,6 +21,9 @@ struct MDViewerApp: App {
             }
             CommandGroup(after: .newItem) {
                 Divider()
+                Button(state.isEditing ? "Leseansicht" : "Bearbeiten") { state.toggleEditing() }
+                    .keyboardShortcut(.return)
+                    .disabled(state.openFile == nil)
                 Button("Im Editor öffnen") { state.openInEditor() }
                     .keyboardShortcut("e")
                     .disabled(state.openFile == nil)

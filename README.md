@@ -6,6 +6,7 @@ Ein ruhiger, nativer Markdown-Viewer für den Mac (SwiftUI + WebKit). Lesen hier
 
 - Dateibrowser mit Konsolenzeile: tippen filtert, ⇥ vervollständigt Pfade, Pfeiltasten navigieren
 - Live-Aktualisierung: Speichern im Editor zeigt die Änderung sofort an
+- Einfacher Bearbeitungsmodus (⌘↩) mit dezenter Syntaxhervorhebung und automatischem Speichern
 - Öffnen im externen Editor (⌘E), z. B. Typora, iA Writer, VS Code
 - PDF-Export per Knopf oder ⌘P über [mdprint](../markdown-printer)
 - Hell/Dunkel, Sans/Serif, Schriftgröße, drei Inhaltsbreiten
@@ -63,6 +64,7 @@ Wird nach dem Standard-Layout geladen und überschreibt es. Bearbeiten und Zurü
 | `Sources/MDViewer/FileListing.swift` | Einlesen und Filtern von Ordnern |
 | `Sources/MDViewer/FileWatcher.swift` | Meldet Änderungen an Datei, Ordner und theme.css |
 | `Sources/MDViewer/MarkdownWebView.swift` | WKWebView-Anbindung |
+| `Sources/MDViewer/MarkdownEditor.swift` | Bearbeitungsmodus: Textfeld, Hervorhebung, Speichern |
 | `Sources/MDViewer/PDFExport.swift` | Aufruf von mdprint |
 | `Sources/MDViewer/ExternalEditor.swift` | Externen Editor finden und öffnen |
 | `Sources/MDViewer/CustomTheme.swift` | theme.css und Hilfe |

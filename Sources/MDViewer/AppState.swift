@@ -54,6 +54,10 @@ final class AppState {
     private(set) var consoleFocusToken = 0
     /// Datei, für die gerade ein PDF erzeugt wird.
     private(set) var exportingPDF: URL?
+    /// Bearbeitungsmodus statt Leseansicht.
+    var isEditing = false
+    /// Speichert den offenen Editor sofort (vor PDF-Export oder externem Editor).
+    @ObservationIgnored var saveEditor: (() -> Void)?
 
     private init() {
         let fm = FileManager.default
@@ -90,13 +94,21 @@ final class AppState {
 
     func focusConsole() { consoleFocusToken += 1 }
 
+    func toggleEditing() {
+        guard openFile != nil else { return }
+        isEditing.toggle()
+        if !isEditing { focusConsole() }
+    }
+
     func openInEditor(_ url: URL? = nil) {
         guard let file = url ?? openFile else { return }
+        saveEditor?()
         ExternalEditor.open(file)
     }
 
     func exportPDF(_ url: URL? = nil) {
         guard let file = url ?? openFile, exportingPDF == nil else { return }
+        saveEditor?()
         exportingPDF = file
         PDFExport.run(file) { [weak self] error in
             self?.exportingPDF = nil

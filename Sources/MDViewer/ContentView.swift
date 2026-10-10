@@ -14,8 +14,16 @@ struct ContentView: View {
                 .navigationSplitViewColumnWidth(min: 240, ideal: 310, max: 520)
         } detail: {
             if let file = state.openFile {
-                MarkdownWebView(file: file, fontSize: fontSize, fontStyle: fontStyle, contentWidth: contentWidth)
-                    .ignoresSafeArea(edges: .bottom)
+                ZStack {
+                    // Die Leseansicht bleibt geladen, damit Scrollposition und Darstellung beim Zurückwechseln erhalten bleiben.
+                    MarkdownWebView(file: file, fontSize: fontSize, fontStyle: fontStyle, contentWidth: contentWidth)
+                        .opacity(state.isEditing ? 0 : 1)
+                        .accessibilityHidden(state.isEditing)
+                    if state.isEditing {
+                        MarkdownEditor(file: file, fontSize: fontSize, fontStyle: fontStyle, contentWidth: contentWidth)
+                    }
+                }
+                .ignoresSafeArea(edges: .bottom)
             } else {
                 ContentUnavailableView(
                     "Keine Datei geöffnet",
@@ -40,6 +48,13 @@ struct ContentView: View {
                     contentWidth = ContentWidth.next(after: contentWidth)
                 }
                 .help("Inhaltsbreite: \(ContentWidth.label(contentWidth)) – Klick wechselt (⌘\\)")
+
+                Toggle(isOn: Binding(get: { state.isEditing }, set: { _ in state.toggleEditing() })) {
+                    Label("Bearbeiten", systemImage: "pencil")
+                }
+                .toggleStyle(.button)
+                .help(state.isEditing ? "Zurück zur Leseansicht (⌘↩ oder Esc)" : "Hier bearbeiten (⌘↩)")
+                .disabled(state.openFile == nil)
 
                 Button { state.exportPDF() } label: {
                     if state.exportingPDF != nil {
